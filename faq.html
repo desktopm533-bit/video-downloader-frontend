@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<script>(function(){try{if(localStorage.getItem("vidsaver-theme")==="dark"){document.body.classList.add("dark-theme");}}catch(e){}})();</script>
 
 <div class="glow one"></div>
 <div class="glow two"></div>
@@ -86,7 +87,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 <b>VidSaver</b>. All rights reserved. · Developed by <b>M Qamar</b></span>
+    <span>© 2026 <b>VidSaver</b>. All rights reserved.<br class="footer-br">Developed by <b>M&nbsp;Qamar</b></span>
     <span class="footer-disclaimer">VidSaver is an independent tool and is not affiliated with Instagram or TikTok.</span>
   </div>
 </footer>
@@ -153,12 +154,12 @@
   (function () {
     var THEME_KEY = "vidsaver-theme";
     var saved = localStorage.getItem(THEME_KEY);
-    if (saved === "light") document.body.classList.add("light-theme");
+    if (saved === "dark") document.body.classList.add("dark-theme");
     var themeToggle = document.getElementById("themeToggle");
     if (themeToggle) {
       themeToggle.addEventListener("click", function () {
-        var isLight = document.body.classList.toggle("light-theme");
-        localStorage.setItem(THEME_KEY, isLight ? "light" : "dark");
+        var isDark = document.body.classList.toggle("dark-theme");
+        localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
       });
     }
   })();
