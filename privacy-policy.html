@@ -23,7 +23,14 @@
     <img src="logo.png" alt="VidSaver logo">
     <span>VidSaver</span>
   </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="header-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Switch theme">
+      <span class="tt-icon tt-sun" aria-hidden="true">☀</span>
+      <span class="tt-knob"></span>
+      <span class="tt-icon tt-moon" aria-hidden="true">☾</span>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  </div>
   <nav class="main-nav" id="mainNav">
     <a href="index.html">Home</a>
     <a href="how-to-download.html">How to Download</a>
@@ -105,15 +112,37 @@
 </main>
 
 <footer class="site-footer">
-  <div class="foot-links">
-    <a href="about.html">About</a>
-    <a href="how-to-download.html">How to Download</a>
-    <a href="faq.html">FAQs</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms &amp; Conditions</a>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="footer-logo" href="index.html">
+        <img src="logo.png" alt="VidSaver logo">
+        <span>VidSaver</span>
+      </a>
+      <p>Free HD video downloader for Instagram and TikTok. No app, no sign up — just paste a link and save.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="index.html">Home</a>
+        <a href="how-to-download.html">How to Download</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="mailto:support@vidsaver.site">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+      </div>
+    </div>
   </div>
-  <div class="disclaimer">VidSaver is an independent tool and is not affiliated with Instagram or TikTok. Please only download content you own or have permission to use.</div>
-  <div class="credits">Developed by <b>M Qamar</b></div>
+  <div class="footer-bottom">
+    <span>© 2026 <b>VidSaver</b>. All rights reserved. · Developed by <b>M Qamar</b></span>
+    <span class="footer-disclaimer">VidSaver is an independent tool and is not affiliated with Instagram or TikTok.</span>
+  </div>
 </footer>
 
 <script>
@@ -122,5 +151,19 @@
   });
 </script>
 
+<script>
+  (function () {
+    var THEME_KEY = "vidsaver-theme";
+    var saved = localStorage.getItem(THEME_KEY);
+    if (saved === "light") document.body.classList.add("light-theme");
+    var themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+      themeToggle.addEventListener("click", function () {
+        var isLight = document.body.classList.toggle("light-theme");
+        localStorage.setItem(THEME_KEY, isLight ? "light" : "dark");
+      });
+    }
+  })();
+</script>
 </body>
 </html>
