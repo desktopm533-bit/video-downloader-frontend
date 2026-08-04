@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQs — VidSaver Instagram & TikTok Video Downloader</title>
+<meta name="description" content="Answers to common questions about downloading Instagram and TikTok videos with VidSaver — quality, cost, safety, watermark and more.">
+<meta name="theme-color" content="#0a0b12">
+<link rel="canonical" href="https://vidsaver.site/faq.html">
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glow one"></div>
+<div class="glow two"></div>
+<div class="glow three"></div>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="logo.png" alt="VidSaver logo">
+    <span>VidSaver</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <nav class="main-nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="how-to-download.html">How to Download</a>
+    <a href="faq.html" class="active">FAQs</a>
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+</header>
+
+<main class="content-wrap">
+  <div class="content-hero">
+    <span class="eyebrow"><span class="dot"></span> Help Center</span>
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about using VidSaver to save Instagram and TikTok videos.</p>
+  </div>
+
+  <div class="content-card">
+    <div id="faqList"></div>
+  </div>
+
+  <div class="cta-band">
+    <a class="btn" href="index.html">Try VidSaver Now →</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-links">
+    <a href="about.html">About</a>
+    <a href="how-to-download.html">How to Download</a>
+    <a href="faq.html">FAQs</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+  <div class="disclaimer">VidSaver is an independent tool and is not affiliated with Instagram or TikTok. Please only download content you own or have permission to use.</div>
+  <div class="credits">Developed by <b>M Qamar</b></div>
+</footer>
+
+<script>
+  document.getElementById("navToggle").addEventListener("click", () => {
+    document.getElementById("mainNav").classList.toggle("open");
+  });
+
+  const faqs = [
+    {
+      q: "Is VidSaver free to use?",
+      a: "Yes. VidSaver is completely free — there's no sign up, no account and no hidden charges to download videos."
+    },
+    {
+      q: "Do downloaded Instagram videos have a watermark?",
+      a: "No. VidSaver fetches the original video file, so downloads are clean and don't add any watermark or logo on top of the video."
+    },
+    {
+      q: "Can I download private Instagram or TikTok videos?",
+      a: "No. VidSaver can only fetch videos from public accounts and public posts. Private content isn't accessible, in line with Instagram and TikTok's own privacy protections."
+    },
+    {
+      q: "What video quality can I download?",
+      a: "Depending on the source video, VidSaver usually offers a choice of resolutions (for example SD and HD) so you can pick the file size and quality that suits you."
+    },
+    {
+      q: "Do I need to install an app?",
+      a: "No app is required. VidSaver works entirely in your browser on desktop or mobile — just paste a link and download."
+    },
+    {
+      q: "Is it safe to use VidSaver?",
+      a: "VidSaver only processes the video link you provide to retrieve the downloadable file — it doesn't ask for your Instagram or TikTok login. See our Privacy Policy for full details on what data we handle."
+    },
+    {
+      q: "Why did my link fail to fetch?",
+      a: "This usually happens if the link is incomplete, the post has been deleted, or the account/video is private. Double-check the URL and try again."
+    },
+    {
+      q: "Am I allowed to download any video I want?",
+      a: "You should only download videos you own or have permission to reuse. Downloading and redistributing someone else's content without permission may violate their rights and the platform's terms — see our Terms & Conditions."
+    }
+  ];
+
+  const list = document.getElementById("faqList");
+  faqs.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "faq-item";
+    div.innerHTML = `
+      <button class="faq-q" aria-expanded="false">
+        <span>${item.q}</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">${item.a}</div></div>
+    `;
+    div.querySelector(".faq-q").addEventListener("click", () => {
+      div.classList.toggle("open");
+    });
+    list.appendChild(div);
+  });
+</script>
+
+</body>
+</html>

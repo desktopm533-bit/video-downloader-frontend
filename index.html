@@ -1,275 +1,23 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Video Downloader</title>
-<meta name="theme-color" content="#150f28">
+<title>VidSaver — Instagram & TikTok Video Downloader (HD, No Watermark)</title>
+<meta name="description" content="VidSaver lets you download Instagram Reels, videos and TikTok clips in HD with no watermark, free and without signing up. Paste a link and save it in seconds." />
+<meta name="theme-color" content="#0a0b12">
+<link rel="canonical" href="https://vidsaver.site/">
+<link rel="icon" href="logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0b12;
-    --panel: rgba(255,255,255,0.045);
-    --border: rgba(255,255,255,0.09);
-    --text: #eef0f6;
-    --text-dim: #8b8fa3;
-    --violet: #8b5cf6;
-    --cyan: #22d3ee;
-    --pink: #ec4899;
-  }
+<link rel="stylesheet" href="style.css">
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    min-height: 100vh;
-    background: var(--bg);
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    position: relative;
-    overflow-x: hidden;
-  }
-
-  /* Ambient glow blobs in background */
-  .glow {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.35;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .glow.one { width: 380px; height: 380px; background: var(--violet); top: -120px; left: -100px; animation: float1 12s ease-in-out infinite; }
-  .glow.two { width: 320px; height: 320px; background: var(--cyan); bottom: -100px; right: -80px; animation: float2 14s ease-in-out infinite; }
-  .glow.three { width: 260px; height: 260px; background: var(--pink); top: 40%; right: 10%; opacity: 0.18; animation: float1 16s ease-in-out infinite reverse; }
-
-  @keyframes float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px, 30px); } }
-  @keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-30px, -40px); } }
-
-  .wrap { position: relative; z-index: 1; width: 100%; max-width: 540px; }
-
-  header { text-align: center; margin-bottom: 30px; }
-  header .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 14px;
-    border-radius: 20px;
-    background: rgba(139,92,246,0.12);
-    border: 1px solid rgba(139,92,246,0.3);
-    font-size: 11.5px;
-    color: #c4b5fd;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    margin-bottom: 16px;
-  }
-  header .badge .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-  }
-  header h1 {
-    font-family: 'Sora', sans-serif;
-    font-weight: 800;
-    font-size: 28px;
-    letter-spacing: -0.4px;
-    background: linear-gradient(120deg, #fff 30%, #c4b5fd 70%, var(--cyan) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 10px;
-  }
-  header p { color: var(--text-dim); font-size: 14px; }
-  header p b { color: var(--text); font-weight: 600; }
-
-  .card {
-    background: var(--panel);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 26px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-  }
-
-  .search {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .input-shell {
-    flex: 1 1 220px;
-    min-width: 0;
-    position: relative;
-  }
-  input[type="text"] {
-    width: 100%;
-    padding: 15px 16px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.04);
-    color: var(--text);
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  input[type="text"]:focus {
-    border-color: var(--violet);
-    box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
-  }
-  input[type="text"]::placeholder { color: #5c5f6f; }
-
-  button#fetchBtn {
-    flex: 1 1 100%;
-    padding: 15px 22px;
-    border-radius: 12px;
-    border: none;
-    background: linear-gradient(135deg, var(--violet), var(--pink));
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-    font-family: 'Sora', sans-serif;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(139,92,246,0.35);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  button#fetchBtn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(139,92,246,0.5); }
-  button#fetchBtn:active { transform: translateY(0); }
-  button#fetchBtn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-  @media (min-width: 460px) {
-    button#fetchBtn { flex: 0 0 auto; }
-  }
-
-  .status-line {
-    margin-top: 14px;
-    font-size: 13px;
-    color: var(--text-dim);
-    min-height: 16px;
-  }
-  .status-line.error { color: #f87171; }
-  .status-line.success { color: #4ade80; }
-
-  .loading {
-    display: none;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 0 4px;
-    color: var(--text-dim);
-    font-size: 13px;
-  }
-  .loading.show { display: flex; }
-  .pulse-ring {
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    border: 2px solid var(--violet);
-    border-top-color: var(--cyan);
-    animation: spin 0.8s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .result { display: none; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); }
-  .result.show { display: block; }
-
-  .video-info { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
-  .video-info .thumb-wrap {
-    position: relative;
-    flex-shrink: 0;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-  .video-info img { width: 100px; height: 68px; object-fit: cover; display: block; }
-  .video-info .meta {
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: 100%;
-  }
-  .video-info h3 {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.45;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-  .video-info .plat-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 7px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--cyan);
-    background: rgba(34,211,238,0.1);
-    border: 1px solid rgba(34,211,238,0.25);
-    padding: 3px 10px;
-    border-radius: 20px;
-    text-transform: capitalize;
-  }
-
-  .qualities-label {
-    font-size: 11.5px;
-    font-weight: 700;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    margin-bottom: 10px;
-  }
-
-  .qualities { display: flex; flex-direction: column; gap: 8px; }
-  .quality-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 13px 16px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.02);
-    cursor: pointer;
-    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
-  }
-  .quality-row:hover {
-    border-color: var(--violet);
-    background: rgba(139,92,246,0.08);
-    transform: translateX(2px);
-  }
-  .quality-row .q-left { display: flex; align-items: center; gap: 10px; }
-  .quality-row .q-label { font-size: 13.5px; font-weight: 700; font-family: 'Sora', sans-serif; }
-  .quality-row .q-size { font-size: 11.5px; color: var(--text-dim); }
-  .quality-row .q-download {
-    font-size: 12px;
-    font-weight: 700;
-    background: linear-gradient(120deg, var(--cyan), var(--violet));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  footer { text-align: center; margin-top: 22px; }
-  footer .disclaimer { font-size: 11.5px; color: var(--text-dim); margin-bottom: 8px; }
-  footer .credits {
-    font-size: 12px;
-    color: #5c5f6f;
-    font-family: 'Sora', sans-serif;
-    letter-spacing: 0.3px;
-  }
-  footer .credits b {
-    background: linear-gradient(120deg, var(--violet), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-  }
-</style>
+<!-- Basic SEO / social meta -->
+<meta property="og:title" content="VidSaver — Instagram & TikTok Video Downloader">
+<meta property="og:description" content="Download Instagram and TikTok videos in HD, no watermark, free and instant.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vidsaver.site/">
+<meta property="og:image" content="https://vidsaver.site/logo.png">
 </head>
 <body>
 
@@ -277,8 +25,25 @@
 <div class="glow two"></div>
 <div class="glow three"></div>
 
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="logo.png" alt="VidSaver logo">
+    <span>VidSaver</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <nav class="main-nav" id="mainNav">
+    <a href="index.html" class="active">Home</a>
+    <a href="#how-to">How to Download</a>
+    <a href="#faq">FAQs</a>
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+</header>
+
+<div class="page-body">
 <div class="wrap">
-  <header>
+  <header class="hero">
     <span class="badge"><span class="dot"></span> HD · No Watermark</span>
     <h1>Video Downloader</h1>
     <p>Instagram <b>·</b> TikTok video downloader</p>
@@ -311,12 +76,152 @@
       <div class="qualities" id="qualities"></div>
     </div>
   </div>
-
-  <footer>
-    <div class="disclaimer">Download HD Quality Videos Free — No Sign Up Required</div>
-    <div class="credits">Developed by <b>M Qamar</b></div>
-  </footer>
 </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- About / Intro -->
+<section class="section tight" id="about">
+  <div class="section-header">
+    <span class="eyebrow"><span class="dot"></span> Instagram &amp; TikTok Downloader</span>
+    <h2>Save Any Video in Seconds</h2>
+  </div>
+  <div class="intro-copy">
+    <p>VidSaver is a free online tool that helps you download public Instagram Reels, videos and TikTok clips straight to your device — in HD, with no watermark. There's nothing to install and no account to create.</p>
+    <p>Just paste a link above, pick the quality you want, and your video downloads instantly. It works the same way on a phone, tablet, or computer, right inside your browser.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- How to download -->
+<section class="section" id="how-to">
+  <div class="section-header">
+    <span class="eyebrow"><span class="dot"></span> Quick Guide</span>
+    <h2>How to Download Videos</h2>
+    <p>Three simple steps — works the same for Instagram and TikTok.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-badge">1</div>
+      <h3>Copy the link</h3>
+      <p>Open the video on Instagram or TikTok, tap Share or the ⋯ menu, and select "Copy Link".</p>
+    </div>
+    <div class="step-card">
+      <div class="step-badge">2</div>
+      <h3>Paste &amp; fetch</h3>
+      <p>Paste the link into the box above and tap "Fetch Video" to load a preview with quality options.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-badge">3</div>
+      <h3>Download</h3>
+      <p>Choose your preferred quality and the video saves straight to your device — no watermark added.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Why choose us -->
+<section class="section">
+  <div class="section-header">
+    <span class="eyebrow"><span class="dot"></span> Why VidSaver</span>
+    <h2>Built to Just Work</h2>
+    <p>No clutter, no confusing steps — just a fast, reliable way to save your videos.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="icon">⚡</div>
+      <h3>Fast Downloads</h3>
+      <p>Optimized servers get your video ready in seconds, not minutes.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🎬</div>
+      <h3>HD Quality</h3>
+      <p>Save videos in their original resolution, with no compression loss.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🚫</div>
+      <h3>No Watermark</h3>
+      <p>Downloads are clean copies of the original file — nothing added on top.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🔒</div>
+      <h3>No Sign-Up</h3>
+      <p>No account, no login, no personal details needed to download a video.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Features -->
+<section class="section">
+  <div class="section-header">
+    <span class="eyebrow"><span class="dot"></span> Features</span>
+    <h2>Everything You Need</h2>
+    <p>One tool that covers both of the platforms you use most.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="tag">Instagram</span>
+      <h3>Reels Downloader</h3>
+      <p>Save Instagram Reels in HD, ready to rewatch offline or share elsewhere.</p>
+    </div>
+    <div class="feature-card">
+      <span class="tag">Instagram</span>
+      <h3>Video Downloader</h3>
+      <p>Download regular Instagram feed videos and posts with a single link.</p>
+    </div>
+    <div class="feature-card">
+      <span class="tag">TikTok</span>
+      <h3>TikTok Downloader</h3>
+      <p>Grab TikTok clips without the watermark, in the best quality available.</p>
+    </div>
+    <div class="feature-card">
+      <span class="tag">Speed</span>
+      <h3>Instant Processing</h3>
+      <p>Your download link is generated in real time — no waiting in long queues.</p>
+    </div>
+    <div class="feature-card">
+      <span class="tag">Privacy</span>
+      <h3>No Login Required</h3>
+      <p>We never ask for your Instagram or TikTok credentials to fetch a video.</p>
+    </div>
+    <div class="feature-card">
+      <span class="tag">Access</span>
+      <h3>Works Everywhere</h3>
+      <p>Runs entirely in your browser — Android, iPhone, Windows, or Mac.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-header">
+    <span class="eyebrow"><span class="dot"></span> Help Center</span>
+    <h2>Frequently Asked Questions</h2>
+    <p>Quick answers to the most common questions about VidSaver.</p>
+  </div>
+  <div class="content-card" style="max-width:720px;margin-left:auto;margin-right:auto;">
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="foot-links">
+    <a href="about.html">About</a>
+    <a href="how-to-download.html">How to Download</a>
+    <a href="faq.html">FAQs</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+  <div class="disclaimer">VidSaver is an independent tool and is not affiliated with Instagram or TikTok. Please only download content you own or have permission to use — see our <a href="terms.html" class="inline-link">Terms</a>.</div>
+  <div class="credits">Developed by <b>M Qamar</b></div>
+</footer>
 
 <script>
   const BACKEND_URL = "https://video-downloader-rfpe.onrender.com";
@@ -327,6 +232,10 @@
   const loadingEl = document.getElementById("loading");
   const resultEl = document.getElementById("result");
   const qualitiesEl = document.getElementById("qualities");
+  const navToggle = document.getElementById("navToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  navToggle.addEventListener("click", () => mainNav.classList.toggle("open"));
 
   fetchBtn.addEventListener("click", fetchVideoInfo);
   urlInput.addEventListener("keypress", (e) => { if (e.key === "Enter") fetchVideoInfo(); });
@@ -402,7 +311,6 @@
 
       const jobId = createData.job_id;
 
-      // Har 2 second mein status check karna jab tak "done" ya "failed" na ho
       const poll = async () => {
         const res = await fetch(`${BACKEND_URL}/api/jobs/${jobId}`);
         const data = await res.json();
@@ -438,6 +346,32 @@
     statusEl.innerText = msg;
     statusEl.className = "status-line" + (isError ? " error" : "");
   }
+
+  // FAQ accordion
+  const faqs = [
+    { q: "Is VidSaver free to use?", a: "Yes. VidSaver is completely free — there's no sign up, no account and no hidden charges to download videos." },
+    { q: "Do downloaded Instagram videos have a watermark?", a: "No. VidSaver fetches the original video file, so downloads are clean and don't add any watermark or logo on top of the video." },
+    { q: "Can I download private Instagram or TikTok videos?", a: "No. VidSaver can only fetch videos from public accounts and public posts. Private content isn't accessible, in line with Instagram and TikTok's own privacy protections." },
+    { q: "What video quality can I download?", a: "Depending on the source video, VidSaver usually offers a choice of resolutions (for example SD and HD) so you can pick the file size and quality that suits you." },
+    { q: "Do I need to install an app?", a: "No app is required. VidSaver works entirely in your browser on desktop or mobile — just paste a link and download." },
+    { q: "Is it safe to use VidSaver?", a: "VidSaver only processes the video link you provide to retrieve the downloadable file — it doesn't ask for your Instagram or TikTok login." },
+    { q: "Why did my link fail to fetch?", a: "This usually happens if the link is incomplete, the post has been deleted, or the account/video is private. Double-check the URL and try again." },
+    { q: "Am I allowed to download any video I want?", a: "You should only download videos you own or have permission to reuse. See our Terms & Conditions for details." }
+  ];
+  const faqList = document.getElementById("faqList");
+  faqs.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "faq-item";
+    div.innerHTML = `
+      <button class="faq-q" aria-expanded="false">
+        <span>${item.q}</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">${item.a}</div></div>
+    `;
+    div.querySelector(".faq-q").addEventListener("click", () => div.classList.toggle("open"));
+    faqList.appendChild(div);
+  });
 </script>
 
 </body>
