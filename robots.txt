@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vidsaver.site/sitemap.xml
