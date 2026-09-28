@@ -28,8 +28,14 @@
 <meta property="og:title" content="VidSaver — Instagram & TikTok Video Downloader">
 <meta property="og:description" content="Download Instagram and TikTok videos in HD, no watermark, free and instant.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="VidSaver">
 <meta property="og:url" content="https://vidsaver.site/">
 <meta property="og:image" content="https://vidsaver.site/logo.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VidSaver — Instagram & TikTok Video Downloader">
+<meta name="twitter:description" content="Download Instagram Reels and TikTok videos in HD, no watermark, free.">
 
 <!-- Structured data: WebApplication -->
 <script type="application/ld+json">
@@ -52,42 +58,74 @@
 <!-- Structured data: FAQPage -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is VidSaver free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. VidSaver is completely free — there's no sign up, no account and no hidden charges to download videos."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do downloaded Instagram videos have a watermark?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. VidSaver fetches the original video file, so downloads are clean and don't add any watermark or logo on top of the video."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I download private Instagram or TikTok videos?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. VidSaver can only fetch videos from public accounts and public posts. Private content isn't accessible."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need to install an app?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No app is required. VidSaver works entirely in your browser on desktop or mobile — just paste a link and download."
-      }
-    }
-  ]
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Is VidSaver free to use?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. VidSaver is completely free — there's no sign up, no account and no hidden charges to download videos."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do downloaded Instagram videos have a watermark?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. VidSaver fetches the original video file, so downloads are clean and don't add any watermark or logo on top of the video."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I download private Instagram or TikTok videos?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. VidSaver can only fetch videos from public accounts and public posts. Private content isn't accessible, in line with Instagram and TikTok's own privacy protections."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What video quality can I download?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Depending on the source video, VidSaver usually offers a choice of resolutions (for example SD and HD) so you can pick the file size and quality that suits you."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I need to install an app?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No app is required. VidSaver works entirely in your browser on desktop or mobile — just paste a link and download."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it safe to use VidSaver?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "VidSaver only processes the video link you provide to retrieve the downloadable file — it doesn't ask for your Instagram or TikTok login."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why did my link fail to fetch?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "This usually happens if the link is incomplete, the post has been deleted, or the account/video is private. Double-check the URL and try again."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Am I allowed to download any video I want?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You should only download videos you own or have permission to reuse. See our Terms & Conditions for details."
+   }
+  }
+ ]
 }
 </script>
 </head>
@@ -99,7 +137,7 @@
 <div class="glow three"></div>
 
 <header class="site-header">
-  <a class="brand" href="index.html">
+  <a class="brand" href="/">
     <img src="logo.png" alt="VidSaver logo">
     <span>VidSaver</span>
   </a>
@@ -112,9 +150,11 @@
     <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   </div>
   <nav class="main-nav" id="mainNav">
-    <a href="index.html" class="active">Home</a>
-    <a href="#how-to">How to Download</a>
-    <a href="#faq">FAQs</a>
+    <a href="/" class="active">Home</a>
+    <a href="instagram-reels-downloader.html">Instagram Reels</a>
+    <a href="tiktok-downloader-no-watermark.html">TikTok Downloader</a>
+    <a href="how-to-download.html">How to Download</a>
+    <a href="faq.html">FAQs</a>
     <a href="about.html">About</a>
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms</a>
@@ -170,6 +210,7 @@
   <div class="intro-copy">
     <p>VidSaver is a free online tool that helps you download public Instagram Reels, videos and TikTok clips straight to your device — in HD, with no watermark. There's nothing to install and no account to create.</p>
     <p>Just paste a link above, pick the quality you want, and your video downloads instantly. It works the same way on a phone, tablet, or computer, right inside your browser.</p>
+    <p>Looking for a specific tool? Try our <a class="inline-link" href="instagram-reels-downloader.html">Instagram Reels downloader</a> or the <a class="inline-link" href="tiktok-downloader-no-watermark.html">TikTok downloader without watermark</a>.</p>
   </div>
 </section>
 
@@ -287,14 +328,23 @@
     <p>Quick answers to the most common questions about VidSaver.</p>
   </div>
   <div class="content-card" style="max-width:720px;margin-left:auto;margin-right:auto;">
-    <div id="faqList"></div>
+    <div id="faqList">
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is VidSaver free to use?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. VidSaver is completely free — there's no sign up, no account and no hidden charges to download videos.</div></div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do downloaded Instagram videos have a watermark?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">No. VidSaver fetches the original video file, so downloads are clean and don't add any watermark or logo on top of the video.</div></div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Can I download private Instagram or TikTok videos?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">No. VidSaver can only fetch videos from public accounts and public posts. Private content isn't accessible, in line with Instagram and TikTok's own privacy protections.</div></div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What video quality can I download?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Depending on the source video, VidSaver usually offers a choice of resolutions (for example SD and HD) so you can pick the file size and quality that suits you.</div></div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do I need to install an app?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">No app is required. VidSaver works entirely in your browser on desktop or mobile — just paste a link and download.</div></div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is it safe to use VidSaver?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">VidSaver only processes the video link you provide to retrieve the downloadable file — it doesn't ask for your Instagram or TikTok login.</div></div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Why did my link fail to fetch?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">This usually happens if the link is incomplete, the post has been deleted, or the account/video is private. Double-check the URL and try again.</div></div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Am I allowed to download any video I want?</span><span class="icon">+</span></button><div class="faq-a"><div class="faq-a-inner">You should only download videos you own or have permission to reuse. See our Terms & Conditions for details.</div></div></div>
+  </div>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="footer-top">
     <div class="footer-brand">
-      <a class="footer-logo" href="index.html">
+      <a class="footer-logo" href="/">
         <img src="logo.png" alt="VidSaver logo">
         <span>VidSaver</span>
       </a>
@@ -302,8 +352,20 @@
     </div>
     <div class="footer-cols">
       <div class="footer-col">
+        <h4>Guides</h4>
+        <a href="instagram-reel-download-kaise-kare.html">Instagram Reel Download Kaise Kare</a>
+        <a href="tiktok-video-bina-watermark-download-kaise-kare.html">TikTok Video Bina Watermark Ke Download Kaise Kare</a>
+        <a href="instagram-video-gallery-mein-save-kaise-kare.html">Instagram Video Gallery Mein Save Kaise Kare</a>
+        <a href="instagram-reel-download-nahi-ho-rahi.html">Instagram Reel Download Nahi Ho Rahi? 6 Wajah Aur Hal</a>
+      </div>
+      <div class="footer-col">
+        <h4>Downloaders</h4>
+        <a href="instagram-reels-downloader.html">Instagram Reels Downloader</a>
+        <a href="tiktok-downloader-no-watermark.html">TikTok Downloader</a>
+      </div>
+      <div class="footer-col">
         <h4>Product</h4>
-        <a href="index.html">Home</a>
+        <a href="/">Home</a>
         <a href="how-to-download.html">How to Download</a>
         <a href="faq.html">FAQs</a>
       </div>
@@ -326,155 +388,13 @@
 </footer>
 
 <script>
-  const BACKEND_URL = "https://video-downloader-rfpe.onrender.com";
-
-  const fetchBtn = document.getElementById("fetchBtn");
-  const urlInput = document.getElementById("videoUrl");
-  const statusEl = document.getElementById("status");
-  const loadingEl = document.getElementById("loading");
-  const resultEl = document.getElementById("result");
-  const qualitiesEl = document.getElementById("qualities");
-  const navToggle = document.getElementById("navToggle");
-  const mainNav = document.getElementById("mainNav");
-
-  navToggle.addEventListener("click", () => mainNav.classList.toggle("open"));
-
-  fetchBtn.addEventListener("click", fetchVideoInfo);
-  urlInput.addEventListener("keypress", (e) => { if (e.key === "Enter") fetchVideoInfo(); });
-
-  function detectPlatform(url) {
-    url = url.toLowerCase();
-    if (url.includes("instagram.com")) return "Instagram";
-    if (url.includes("tiktok.com")) return "TikTok";
-    return null;
-  }
-
-  async function fetchVideoInfo() {
-    const url = urlInput.value.trim();
-    if (!url) { showStatus("Please paste a link first !", true); return; }
-
-    resultEl.classList.remove("show");
-    loadingEl.classList.add("show");
-    showStatus("");
-    fetchBtn.disabled = true;
-
-    try {
-      const res = await fetch(`${BACKEND_URL}/api/info`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || "Something Went Wrong");
-
-      document.getElementById("thumb").src = data.thumbnail || "";
-      document.getElementById("videoTitle").innerText = data.title || "Untitled Video";
-      document.getElementById("platTag").innerText = data.platform || detectPlatform(url) || "video";
-
-      qualitiesEl.innerHTML = "";
-      data.formats.forEach((f) => {
-        const row = document.createElement("div");
-        row.className = "quality-row";
-        const sizeText = f.filesize ? `${(f.filesize / (1024 * 1024)).toFixed(1)} MB` : "";
-        row.innerHTML = `
-          <span class="q-left">
-            <span class="q-label">${f.quality}</span>
-            <span class="q-size">${sizeText}</span>
-          </span>
-          <span class="q-download">Download ↓</span>
-        `;
-        row.onclick = () => downloadVideo(url, f.format_id);
-        qualitiesEl.appendChild(row);
-      });
-
-      resultEl.classList.add("show");
-    } catch (err) {
-      showStatus(err.message, true);
-    } finally {
-      loadingEl.classList.remove("show");
-      fetchBtn.disabled = false;
-    }
-  }
-
-  function downloadVideo(url, formatId) {
-    pollDownload(url, formatId);
-  }
-
-  async function pollDownload(url, formatId) {
-    showStatus("Adding to Queue...");
-    try {
-      const createRes = await fetch(`${BACKEND_URL}/api/jobs`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, format_id: formatId }),
-      });
-      const createData = await createRes.json();
-      if (!createRes.ok) throw new Error(createData.detail || "Could not start the job");
-
-      const jobId = createData.job_id;
-
-      const poll = async () => {
-        const res = await fetch(`${BACKEND_URL}/api/jobs/${jobId}`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.detail || "Status check failed");
-
-        if (data.status === "queued") {
-          showStatus("Your video is in the Queue, Please Wait a Moment...");
-          setTimeout(poll, 2000);
-        } else if (data.status === "processing") {
-          showStatus("Your Video is Processing, Please Wait...");
-          setTimeout(poll, 2000);
-        } else if (data.status === "done") {
-          showStatus("✓ Ready! Downloading is Started...");
-          const fileUrl = `${BACKEND_URL}/api/jobs/${jobId}/file`;
-          const a = document.createElement("a");
-          a.href = fileUrl;
-          a.rel = "noopener";
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } else if (data.status === "failed") {
-          showStatus(data.error || "Download failed", true);
-        }
-      };
-
-      poll();
-    } catch (err) {
-      showStatus(err.message, true);
-    }
-  }
-
-  function showStatus(msg, isError = false) {
-    statusEl.innerText = msg;
-    statusEl.className = "status-line" + (isError ? " error" : "");
-  }
-
-  // FAQ accordion
-  const faqs = [
-    { q: "Is VidSaver free to use?", a: "Yes. VidSaver is completely free — there's no sign up, no account and no hidden charges to download videos." },
-    { q: "Do downloaded Instagram videos have a watermark?", a: "No. VidSaver fetches the original video file, so downloads are clean and don't add any watermark or logo on top of the video." },
-    { q: "Can I download private Instagram or TikTok videos?", a: "No. VidSaver can only fetch videos from public accounts and public posts. Private content isn't accessible, in line with Instagram and TikTok's own privacy protections." },
-    { q: "What video quality can I download?", a: "Depending on the source video, VidSaver usually offers a choice of resolutions (for example SD and HD) so you can pick the file size and quality that suits you." },
-    { q: "Do I need to install an app?", a: "No app is required. VidSaver works entirely in your browser on desktop or mobile — just paste a link and download." },
-    { q: "Is it safe to use VidSaver?", a: "VidSaver only processes the video link you provide to retrieve the downloadable file — it doesn't ask for your Instagram or TikTok login." },
-    { q: "Why did my link fail to fetch?", a: "This usually happens if the link is incomplete, the post has been deleted, or the account/video is private. Double-check the URL and try again." },
-    { q: "Am I allowed to download any video I want?", a: "You should only download videos you own or have permission to reuse. See our Terms & Conditions for details." }
-  ];
-  const faqList = document.getElementById("faqList");
-  faqs.forEach((item) => {
-    const div = document.createElement("div");
-    div.className = "faq-item";
-    div.innerHTML = `
-      <button class="faq-q" aria-expanded="false">
-        <span>${item.q}</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="faq-a"><div class="faq-a-inner">${item.a}</div></div>
-    `;
-    div.querySelector(".faq-q").addEventListener("click", () => div.classList.toggle("open"));
-    faqList.appendChild(div);
+  document.querySelectorAll(".faq-item").forEach(function(i){
+    i.querySelector(".faq-q").addEventListener("click", function(){
+      var o = i.classList.toggle("open"); this.setAttribute("aria-expanded", o);
+    });
   });
 </script>
+<script src="downloader.js" defer></script>
 
 <script>
   (function () {
